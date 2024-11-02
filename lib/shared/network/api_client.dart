@@ -12,15 +12,7 @@ const _apiTimeout = Duration(seconds: 30);
 
 @visibleForTesting
 // ignore: public_member_api_docs
-String domainUrl = const String.fromEnvironment('TS_URL');
-
-@visibleForTesting
-// ignore: public_member_api_docs
-String env = const String.fromEnvironment('ENV');
-
-@visibleForTesting
-// ignore: public_member_api_docs
-bool isLocal = env == 'local';
+String domainUrl = const String.fromEnvironment('CAT_API_URL');
 
 /// An abstract contract class for all api calls
 ///
@@ -92,9 +84,7 @@ class ApiClientImpl implements ApiClient {
       headers.putIfAbsent('Content-Type', () => 'application/json');
 
       Uri uri = Uri.https(domainUrl, apiPath, query);
-      if (isLocal) {
-        uri = Uri.http(domainUrl, apiPath, query);
-      }
+
       final response =
           await client.get(uri, headers: headers).timeout(_apiTimeout);
       _handleResponseLog(response);
@@ -122,9 +112,7 @@ class ApiClientImpl implements ApiClient {
       headers.putIfAbsent('Content-Type', () => 'application/json');
 
       Uri uri = Uri.https(domainUrl, apiPath, query);
-      if (isLocal) {
-        uri = Uri.http(domainUrl, apiPath, query);
-      }
+
       final response = await client
           .post(uri, body: jsonEncode(body), headers: headers)
           .timeout(_apiTimeout);
@@ -155,9 +143,7 @@ class ApiClientImpl implements ApiClient {
       headers.putIfAbsent('Content-Type', () => 'application/json');
 
       Uri uri = Uri.https(domainUrl, apiPath, query);
-      if (isLocal) {
-        uri = Uri.http(domainUrl, apiPath, query);
-      }
+
       final response = await client
           .put(uri, body: jsonEncode(body), headers: headers)
           .timeout(_apiTimeout);
@@ -182,9 +168,6 @@ class ApiClientImpl implements ApiClient {
       headers ??= {'Content-Type': 'application/json'};
       headers.putIfAbsent('Content-Type', () => 'application/json');
       Uri uri = Uri.https(domainUrl, apiPath);
-      if (isLocal) {
-        uri = Uri.http(domainUrl, apiPath);
-      }
       final response = await client
           .delete(uri, body: jsonEncode(body), headers: headers)
           .timeout(_apiTimeout);
