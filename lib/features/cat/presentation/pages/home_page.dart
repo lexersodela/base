@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../di/main_di.dart';
 import '../../../../shared/widgets/custom_scaffold.dart';
+import '../../../../shared/widgets/custom_text.dart';
 import '../cubit/cat_cubit.dart';
 
 /// A page class for home page
@@ -39,7 +40,10 @@ class __HomePageContentState extends State<_HomePageContent> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       appBar: AppBar(
-        title: const Text('Cat Facts'),
+        title: const CustomText(
+          'Cat Facts',
+          fontWeight: FontWeight.bold,
+        ),
       ),
       body: BlocBuilder<CatCubit, CatState>(
         builder: (context, state) {
@@ -50,12 +54,20 @@ class __HomePageContentState extends State<_HomePageContent> {
               itemCount: state.facts.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(state.facts[index].text),
+                  leading: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.pets, size: 12),
+                      const SizedBox(width: 8),
+                      CustomText('Fact #${index + 1}'),
+                    ],
+                  ),
+                  title: CustomText(state.facts[index].text),
                 );
               },
             );
           } else if (state is CatError) {
-            return Center(child: Text(state.message));
+            return Center(child: CustomText(state.message));
           }
           return Container();
         },

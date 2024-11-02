@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../routes/route_name.dart';
 import '../../../../shared/widgets/custom_scaffold.dart';
+import '../../../../shared/widgets/custom_text.dart';
 
 /// A page class for splash page
 class SplashPage extends StatelessWidget {
@@ -41,7 +42,7 @@ class __SplashPageContentState extends State<_SplashPageContent> {
         children: [
           Center(child: CircularProgressIndicator()),
           SizedBox(height: 16),
-          Center(child: Text('Loading...')),
+          Center(child: CustomText('Loading...')),
         ],
       ),
     );
