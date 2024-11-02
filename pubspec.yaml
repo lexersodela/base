@@ -18,6 +18,9 @@ dependencies:
   logger: ^2.4.0
   equatable: ^2.0.5
   internet_connection_checker_plus: ^2.5.2
+  dartz: ^0.10.1
+  flutter_bloc: ^8.1.6
+  get_it: ^8.0.2
 
 dev_dependencies:
   flutter_test:
@@ -25,10 +28,22 @@ dev_dependencies:
 
   flutter_lints: ^4.0.0
 
-
 flutter:
 
   uses-material-design: true
+  assets:
+    - assets/fonts/
+    - assets/env/
+  fonts:
+    - family: Helvetica
+      fonts:
+        - asset: assets/fonts/HelveticaNeue-Light.otf
+          weight: 300
+        - asset: assets/fonts/HelveticaNeueMedium.ttf
+          weight: 400
+        - asset: assets/fonts/HelveticaNeueBold.ttf
+          weight: 700
+
 
   
   

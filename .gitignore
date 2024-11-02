@@ -154,3 +154,5 @@ ios/fastlane/report.xml
 ios/fastlane/metadata
 ios/fastlane/screenshots
 ios/fastlane/Preview.html
+# Environment
+assets/env
